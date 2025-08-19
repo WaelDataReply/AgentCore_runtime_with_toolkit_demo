@@ -6,6 +6,12 @@ This guide provides step-by-step instructions for setting up and deploying an ag
 ![Bedrock AgentCore Runtime Schema](images/runtime.png)  
 *Figure: AgentCore runtime workflow*
 
+## The use case: A Financial Multi-Agents System:
+The Financial Multi-Agents System represents a sophisticated orchestration framework designed to enhance customer service and internal operations through specialized AI assistants. At its core, the system employs an intelligent orchestrator that analyzes incoming queries and routes them to the most appropriate domain-specific assistant. This architecture features five specialized agents: a Finance Assistant for banking products and investment analyses; a Legal Assistant for regulatory compliance and contract inquiries; a Writing Assistant for professional document drafting; a Technical Assistant for IT and security concerns; and a General Assistant for miscellaneous inquiries. Each specialized agent is equipped with tailored tools—such as calculators for financial modeling, HTTP requests for legal research, document editors for content creation, and code execution environments for technical troubleshooting. This modular design ensures that complex inquiries receive expert-level responses while maintaining a seamless user experience through a unified interface. The system exemplifies Credit Agricole's commitment to leveraging advanced AI technologies to deliver precise, contextually relevant assistance across the full spectrum of banking operations.
+
+![Financial Multi-Agents System](images/demo-Page-2.drawio.png)  
+*Figure: Financial Multi-Agents System*
+
 ## Prerequisites
 
 - An EC2 instance with **arm64** architecture
@@ -50,7 +56,7 @@ source .venv/bin/activate
 
 ### 6. Test the Agent Locally
 ```bash
-python agent.py '{"prompt": "What is the weather now?"}'
+uv run finance_agent.py
 ```
 
 ### 7. Prepare Agent for AgentCore Runtime Deployment
@@ -76,13 +82,15 @@ if __name__ == "__main__":
 
 ### 8. Deploy the Agent
 ```bash
-python step1-deploy_agent.py
+uv run step1-deploy_agent.py
 ```
 
 ### 9. Invoke the Deployed Agent
 ```bash
-python step2-invoke_agent.py
+uv run step2-invoke_agent.py
 ```
+![Final output](images/output.png)  
+*Figure: Final output*
 
 ### 10. Monitor Performance
 After successful deployment, check the Amazon GenAI observability dashboard to monitor performance metrics of your deployed agent.
